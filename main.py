@@ -3,8 +3,8 @@ from PIL import Image, ImageTk
 import random
 
 #Määritellään pelin vakioarvoja / asetuksia
-PELI_LEVEYS = 700
-PELI_KORKEUS = 700
+PELI_LEVEYS = 1000
+PELI_KORKEUS = 1000
 NOPEUS = 100
 RUUDUN_KOKO = 50
 PITUUS = 2
@@ -34,8 +34,8 @@ class Kalja: # Luodaan Kalja luokka
     def __init__(self): #Muodostetaan Kalja objekti
 
         #Luodaan satunnaiset luvut x ja y koordinaatistoon:
-        x = random.randint(1, (PELI_LEVEYS / RUUDUN_KOKO)-1) * RUUDUN_KOKO
-        y = random.randint(1, (PELI_KORKEUS / RUUDUN_KOKO)-1) * RUUDUN_KOKO
+        x = random.randint(0, (PELI_LEVEYS / RUUDUN_KOKO)-1) * RUUDUN_KOKO
+        y = random.randint(0, (PELI_KORKEUS / RUUDUN_KOKO)-1) * RUUDUN_KOKO
 
         self.koordinaatit = [x, y]
 
@@ -46,7 +46,7 @@ class Kalja: # Luodaan Kalja luokka
         #Muutetaan kuva Tkinter kirjastolle sopivaksi
         self.new_img = ImageTk.PhotoImage(resize_img)
         #Lisätään kuva pelikentälle satunnaiseen paikkaan
-        canvas.create_image(x, y, image=self.new_img, tag="kalja")
+        canvas.create_image(x, y, image=self.new_img, anchor=NW, tag="kalja")
 
 
 def seuraava_liike(mato, kalja): #Luodaan seuraava_liike funktio mato ja kalja parametreilla.
