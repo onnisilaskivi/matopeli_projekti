@@ -3,8 +3,8 @@ from PIL import Image, ImageTk
 import random
 
 #Määritellään pelin vakioarvoja / asetuksia
-PELI_LEVEYS = 1000
-PELI_KORKEUS = 1000
+PELI_LEVEYS = 700
+PELI_KORKEUS = 700
 NOPEUS = 100
 RUUDUN_KOKO = 50
 PITUUS = 2
