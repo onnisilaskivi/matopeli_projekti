@@ -5,8 +5,10 @@ import random
 #Määritellään pelin vakioarvoja / asetuksia
 PELI_LEVEYS = 700
 PELI_KORKEUS = 700
+#Miniminopeus madolle 200 ja Maksiminopeus 50, jotta peli mielekästä. Pidetään huolta yksikkötesteillä.
 NOPEUS = 100
 RUUDUN_KOKO = 50
+#Pituuden oltava minimissään 2. Pidetään huolta yksikkötesteillä.
 PITUUS = 2
 MATO_VARI = "pink"
 PISTEET_TAUSTAVARI = "yellow"
@@ -19,8 +21,7 @@ class Mato: #Luodaan Mato luokka
         self.koordinaatit = [] #Määritellään koordinaatit lista
         self.mato_ovaalit = [] #Määritellään madon osat lista
 
-        #Luodaan koordinaattilista ja laitetaan mato aloittamaan pelikentän vasemmasta yläkulmasta,
-        #eli koordinaateista 0,0.
+        #Luodaan koordinaattilista ja laitetaan mato aloittamaan pelikentän vasemmasta yläkulmasta, eli koordinaateista 0,0.
         for i in range(0, PITUUS):
             self.koordinaatit.append([0, 0])
         #Luodaan madon osat. Madon osat koostuvat "ovaaleista".
@@ -28,11 +29,15 @@ class Mato: #Luodaan Mato luokka
             mato_ovaali = canvas.create_oval(x, y, x + RUUDUN_KOKO, y + RUUDUN_KOKO, fill=MATO_VARI, tag="mato")
             self.mato_ovaalit.append(mato_ovaali)
 
+        global mato_ovaalit_testi
+        mato_ovaalit_testi = self.mato_ovaalit
+
 
 class Kalja: # Luodaan Kalja luokka
 
     def __init__(self): #Muodostetaan Kalja objekti
-
+        global x
+        global y
         #Luodaan satunnaiset luvut x ja y koordinaatistoon:
         x = random.randint(0, (PELI_LEVEYS / RUUDUN_KOKO)-1) * RUUDUN_KOKO
         y = random.randint(0, (PELI_KORKEUS / RUUDUN_KOKO)-1) * RUUDUN_KOKO
@@ -104,6 +109,9 @@ def seuraava_liike(mato, kalja): #Luodaan seuraava_liike funktio mato ja kalja p
 def vaihda_suunta(uusi_suunta):
 
     global suunta #lisätään suunta funktioon
+    global uusi_suunta_test #lisätään 
+
+    uusi_suunta_test = uusi_suunta
 
     #Määritetään uusi suunta. 180 asteen käännöksiä ei hyväksytä.
     if uusi_suunta == 'vasen':
@@ -118,6 +126,7 @@ def vaihda_suunta(uusi_suunta):
     elif uusi_suunta == 'alas':
         if suunta != 'ylos':
             suunta = uusi_suunta
+
 
 def tormays(mato): #Lisätään törmäys funktioon parametriksi mato
 
@@ -135,6 +144,7 @@ def tormays(mato): #Lisätään törmäys funktioon parametriksi mato
             return True
 
     return False
+
 
 def game_over():
     #Tyhjennetään pelikenttä, kun törmäys tapahtuu ja peli päättyy.
@@ -184,6 +194,11 @@ window.resizable(False, False)
 
 pisteet = 0
 suunta = 'alas'
+uusi_suunta_test = ''
+mato_ovaalit_testi = []
+
+x = 0
+y= 0
 
 #Asetetaan pisteet peli-ikkunaan
 label = Label(window, text="pisteet:{}".format(pisteet), bg=PISTEET_TAUSTAVARI, font=('consolas', 40))
