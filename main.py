@@ -5,7 +5,8 @@ import random
 # Määritellään pelin vakioarvoja / asetuksia
 PELI_LEVEYS = 700
 PELI_KORKEUS = 700
-# Miniminopeus madolle 200 ja Maksiminopeus 50, jotta peli mielekästä. Pidetään huolta yksikkötesteillä.
+# Miniminopeus madolle 200 ja Maksiminopeus 50,
+# jotta peli mielekästä. Pidetään huolta yksikkötesteillä.
 NOPEUS = 100
 RUUDUN_KOKO = 50
 # Pituuden oltava minimissään 2. Pidetään huolta yksikkötesteillä.
@@ -51,14 +52,16 @@ class Kalja: # Luodaan Kalja luokka
         # Avataan kuva
         self.img = Image.open("beer2.png")
         # Muokataan kuvan koko vastaamaan arvoa RUUDUN_KOKO
-        resize_img = self.img.resize((RUUDUN_KOKO, RUUDUN_KOKO), Image.ANTIALIAS)
+        resize_img = self.img.resize((RUUDUN_KOKO, RUUDUN_KOKO),
+                                    Image.ANTIALIAS
+                                    )
         # Muutetaan kuva Tkinter kirjastolle sopivaksi
         self.new_img = ImageTk.PhotoImage(resize_img)
         # Lisätään kuva pelikentälle satunnaiseen paikkaan
         canvas.create_image(x, y, image=self.new_img, anchor=NW, tag="kalja")
 
-
-def seuraava_liike(mato, kalja):  # Luodaan seuraava_liike funktio mato ja kalja parametreilla.
+# Luodaan seuraava_liike funktio mato ja kalja parametreilla.
+def seuraava_liike(mato, kalja):
 
     x, y = mato.koordinaatit[0]  # määritetään madon pään koordinaatit
 
@@ -76,7 +79,9 @@ def seuraava_liike(mato, kalja):  # Luodaan seuraava_liike funktio mato ja kalja
     mato.koordinaatit.insert(0, (x, y))
 
     # Luodaan uusi ovaali madon pääksi
-    mato_ovaali = canvas.create_oval(x, y, x + RUUDUN_KOKO, y + RUUDUN_KOKO, fill=MATO_VARI)
+    mato_ovaali = canvas.create_oval(x, y, x + RUUDUN_KOKO,
+                                    y + RUUDUN_KOKO, fill=MATO_VARI
+                                    )
     # päivitetään madon ovaali lista
     mato.mato_ovaalit.insert(0, mato_ovaali)
 
@@ -113,7 +118,7 @@ def seuraava_liike(mato, kalja):  # Luodaan seuraava_liike funktio mato ja kalja
 def vaihda_suunta(uusi_suunta):
 
     global suunta  # lisätään suunta funktioon
-    global uusi_suunta_test # lisätään 
+    global uusi_suunta_test  # lisätään 
 
     uusi_suunta_test = uusi_suunta
 
@@ -206,7 +211,9 @@ x = 0
 y= 0
 
 # Asetetaan pisteet peli-ikkunaan
-label = Label(window, text="pisteet:{}".format(pisteet), bg=PISTEET_TAUSTAVARI, font=('consolas', 40))
+label = Label(window, text="pisteet:{}".format(pisteet),
+            bg=PISTEET_TAUSTAVARI, font=('consolas', 40)
+            )
 label.pack()
 
 # Lisätään pelialusta peli-ikkunaan
