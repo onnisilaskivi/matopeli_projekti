@@ -17,10 +17,10 @@ TAUSTA = "#8E3E2D"
 
 class Mato: # Luodaan Mato luokka
 
-    def __init__(self): # Muodostetaan Mato objekti
-        self.pituus = PITUUS # Määritellään pituus
-        self.koordinaatit = [] # Määritellään koordinaatit lista
-        self.mato_ovaalit = [] # Määritellään madon osat lista
+    def __init__(self):  # Muodostetaan Mato objekti
+        self.pituus = PITUUS  # Määritellään pituus
+        self.koordinaatit = []  # Määritellään koordinaatit lista
+        self.mato_ovaalit = []  # Määritellään madon osat lista
 
         # Luodaan koordinaattilista ja laitetaan mato aloittamaan
         # pelikentän vasemmasta yläkulmasta, eli koordinaateista 0,0.
@@ -29,7 +29,7 @@ class Mato: # Luodaan Mato luokka
         # Luodaan madon osat. Madon osat koostuvat "ovaaleista".
         for x, y in self.koordinaatit:
             mato_ovaali = canvas.create_oval(x, y, x + RUUDUN_KOKO,
-                                            y + RUUDUN_KOKO, fill=MATO_VARI, tag="mato"
+                            y + RUUDUN_KOKO, fill=MATO_VARI, tag="mato"
                                             )
             self.mato_ovaalit.append(mato_ovaali)
 
@@ -39,7 +39,7 @@ class Mato: # Luodaan Mato luokka
 
 class Kalja: # Luodaan Kalja luokka
 
-    def __init__(self): # Muodostetaan Kalja objekti
+    def __init__(self):  # Muodostetaan Kalja objekti
         global x
         global y
         # Luodaan satunnaiset luvut x ja y koordinaatistoon:
@@ -58,9 +58,9 @@ class Kalja: # Luodaan Kalja luokka
         canvas.create_image(x, y, image=self.new_img, anchor=NW, tag="kalja")
 
 
-def seuraava_liike(mato, kalja): # Luodaan seuraava_liike funktio mato ja kalja parametreilla.
+def seuraava_liike(mato, kalja):  # Luodaan seuraava_liike funktio mato ja kalja parametreilla.
 
-    x, y = mato.koordinaatit[0] # määritetään madon pään koordinaatit
+    x, y = mato.koordinaatit[0]  # määritetään madon pään koordinaatit
 
     # Määritetään madon liike
     if suunta == "ylos":
@@ -112,7 +112,7 @@ def seuraava_liike(mato, kalja): # Luodaan seuraava_liike funktio mato ja kalja 
 
 def vaihda_suunta(uusi_suunta):
 
-    global suunta # lisätään suunta funktioon
+    global suunta  # lisätään suunta funktioon
     global uusi_suunta_test # lisätään 
 
     uusi_suunta_test = uusi_suunta
@@ -132,9 +132,9 @@ def vaihda_suunta(uusi_suunta):
             suunta = uusi_suunta
 
 
-def tormays(mato): # Lisätään törmäys funktioon parametriksi mato
+def tormays(mato):  # Lisätään törmäys funktioon parametriksi mato
 
-    x, y = mato.koordinaatit[0] # Tuodaan madonpää funktioon
+    x, y = mato.koordinaatit[0]  # Tuodaan madonpää funktioon
 
     # Katsotaan onko madon pää pelikentän sisällä
     if x < 0 or x >= PELI_LEVEYS:
@@ -158,11 +158,12 @@ def game_over():
     # Lisätään uudet pisteet pistelaskuriin
     label.config(text="pisteet:{}".format(pisteet))
 
-# Aloita peli napin painallus kutsuu Mato ja Kalja objekteja sekä seuraava_liike funktiota. 
+# Aloita peli napin painallus kutsuu Mato ja Kalja objekteja
+# sekä seuraava_liike funktiota. 
 def painallus():
     mato = Mato()
     kalja = Kalja()
-    seuraava_liike(mato, kalja) # Kutsutaan seuraava_liike funktiota
+    seuraava_liike(mato, kalja)  # Kutsutaan seuraava_liike funktiota
 
 # Tehdään aloitusikkuna
 window2 =Tk()
